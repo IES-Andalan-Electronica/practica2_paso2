@@ -97,39 +97,9 @@ void alarmDeactivationUpdate()
 
 void uartTask()
 {
-    char receivedChar = '\0';
-    if( uartUsb.readable() ) {
-        uartUsb.read( &receivedChar, 1 );
-        switch (receivedChar) {
-        case '1':
-            if ( alarmState ) {
-                uartUsb.write( "The alarm is activated\r\n", 24);
-            } else {
-                uartUsb.write( "The alarm is not activated\r\n", 28);
-            }
-            break;
+   
 
-        case '2':
-            if ( gasDetector ) {
-                uartUsb.write( "Gas is being detected\r\n", 22);
-            } else {
-                uartUsb.write( "Gas is not being detected\r\n", 27);
-            }
-            break;
-
-        case '3':
-            if ( overTempDetector ) {
-                uartUsb.write( "Temperature is above the maximum level\r\n", 40);
-            } else {
-                uartUsb.write( "Temperature is below the maximum level\r\n", 40);
-            }
-            break;
-        default:
-            availableCommands();
-            break;
-
-        }
-    }
+   
 }
 
 void availableCommands()
